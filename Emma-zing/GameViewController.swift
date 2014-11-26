@@ -10,6 +10,7 @@ import UIKit
 import SpriteKit
 
 class GameViewController: UIViewController {
+	var level: Level!
 	var scene: GameScene!
  
 	override func prefersStatusBarHidden() -> Bool {
@@ -35,7 +36,35 @@ class GameViewController: UIViewController {
 		scene = GameScene(size: skView.bounds.size)
 		scene.scaleMode = .AspectFill
 		
+		level = Level(filename: "Level_0")
+		scene.level = level
+		
+		scene.addTiles()
+		
+		scene.swipeHandler = handleSwipe
+		
 		// Present the scene.
 		skView.presentScene(scene)
+		
+		beginGame()
+	}
+	
+	func beginGame() {
+		shuffle()
+	}
+ 
+	func shuffle() {
+		let newSymbols = level.shuffle()
+		scene.addSpritesForSymbols(newSymbols)
+	}
+	
+	func handleSwipe(swap: Swap) {
+		view.userInteractionEnabled = false
+			
+		level.performSwap(swap)
+			
+		scene.animateSwap(swap) {
+			self.view.userInteractionEnabled = true
+		}
 	}
 }
