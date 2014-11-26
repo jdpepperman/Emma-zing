@@ -13,12 +13,17 @@ let NumRows = 9
 
 class Level
 {
+	let targetScore: Int!
+	let maximumMoves: Int!
+	
 	private var symbols = Array2D<Symbol>(columns: NumColumns, rows: NumRows)
 	private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
 	
 	private var possibleSwaps = Set<Swap>()
 	
 	var symbolsForThisLevel: [Int] = []
+	
+	private var comboMultiplier = 0
 
 	init(filename: String)
 	{
@@ -38,6 +43,8 @@ class Level
 						}
 					}
 				}
+				targetScore = (dictionary["targetScore"] as NSNumber).integerValue
+				maximumMoves = (dictionary["moves"] as NSNumber).integerValue
 			}
 		}
 		
@@ -156,6 +163,141 @@ class Level
 		
 		possibleSwaps = set
 	}
+	
+	private func detectHorizontalMatches() -> Set<Chain> {
+		var set = Set<Chain>()
+		
+		for row in 0..<NumRows {
+			for var column = 0; column < NumColumns - 2 ; {
+				
+				if let symbol = symbols[column, row] {
+					let matchType = symbol.symbolType
+
+					if symbols[column + 1, row]?.symbolType == matchType && symbols[column + 2, row]?.symbolType == matchType {
+						let chain = Chain(chainType: .Horizontal)
+						
+						do {
+							chain.addSymbol(symbols[column, row]!)
+							++column
+						}
+						while column < NumColumns && symbols[column, row]?.symbolType == matchType
+						
+						set.addElement(chain)
+						continue
+					}
+				}
+			++column
+			}
+		}
+		return set
+	}
+	
+	private func detectVerticalMatches() -> Set<Chain> {
+		var set = Set<Chain>()
+			
+		for column in 0..<NumColumns {
+			for var row = 0; row < NumRows - 2; {
+				if let symbol = symbols[column, row] {
+					let matchType = symbol.symbolType
+				
+					if symbols[column, row + 1]?.symbolType == matchType && symbols[column, row + 2]?.symbolType == matchType {
+						
+						let chain = Chain(chainType: .Vertical)
+						do {
+							chain.addSymbol(symbols[column, row]!)
+							++row
+						}
+						while row < NumRows && symbols[column, row]?.symbolType == matchType
+						
+						set.addElement(chain)
+						continue
+					}
+				}
+				++row
+			}
+		}
+		return set
+	}
+	
+	private func removeSymbols(chains: Set<Chain>) {
+		for chain in chains {
+			for symbol in chain.symbols {
+				symbols[symbol.column, symbol.row] = nil
+			}
+		}
+	}
+	
+	func removeMatches() -> Set<Chain> {
+		let horizontalChains = detectHorizontalMatches()
+		let verticalChains = detectVerticalMatches()
+			
+		removeSymbols(horizontalChains)
+		removeSymbols(verticalChains)
+		
+		calculateScores(horizontalChains)
+		calculateScores(verticalChains)
+			
+		return horizontalChains.unionSet(verticalChains)
+	}
+	
+	func fillHoles() -> [[Symbol]] {
+		var columns = [[Symbol]]()
+		
+		for column in 0..<NumColumns {
+			var array = [Symbol]()
+			
+			for row in 0..<NumRows {
+				if tiles[column, row] != nil && symbols[column, row] == nil {
+					for lookup in (row + 1)..<NumRows {
+						if let symbol = symbols[column, lookup] {
+							
+							symbols[column, lookup] = nil
+							symbols[column, row] = symbol
+							symbol.row = row
+							
+							array.append(symbol)
+							
+							break
+						}
+					}
+				}
+			}
+			if !array.isEmpty {
+				columns.append(array)
+			}
+		}
+		return columns
+	}
+	
+	func topUpSymbols() -> [[Symbol]] {
+		var columns = [[Symbol]]()
+		var symbolType: SymbolType = .Unknown
+			
+		for column in 0..<NumColumns {
+			var array = [Symbol]()
+			
+			for var row = NumRows - 1; row >= 0 && symbols[column, row] == nil; --row {
+				
+				if tiles[column, row] != nil {
+					
+					var newSymbolType: SymbolType
+					do {
+						newSymbolType = SymbolType.random(symbolsForThisLevel)
+					} while newSymbolType == symbolType
+					symbolType = newSymbolType
+					
+					let symbol = Symbol(column: column, row: row, symbolType: symbolType)
+					symbols[column, row] = symbol
+					array.append(symbol)
+				}
+			}
+			
+			if !array.isEmpty {
+				columns.append(array)
+			}
+		}
+		return columns
+	}
  
 	private func createInitialSymbols() -> Set<Symbol> {
 		var set = Set<Symbol>()
@@ -177,7 +319,7 @@ class Level
 							symbols[column - 2, row]?.symbolType == symbolType)
 							|| (row >= 2 &&
 								symbols[column, row - 1]?.symbolType == symbolType &&
-								symbols[column, row - 2]?.symbolType == symbolType)// && (contains(symbolsForThisLevel, symbolType))
+								symbols[column, row - 2]?.symbolType == symbolType)
 			
 					let symbol = Symbol(column: column, row: row, symbolType: symbolType)
 					symbols[column, row] = symbol
@@ -188,5 +330,17 @@ class Level
 		}
 		
 		return set
+	}
+	
+	private func calculateScores(chains: Set<Chain>) {
+		// 3-chain is 60 pts, 4-chain is 120, 5-chain is 180, and so on
+		for chain in chains {
+			chain.score = 60 * (chain.length - 2) * comboMultiplier
+			++comboMultiplier
+		}
+	}
+	
+	func resetComboMultiplier() {
+		comboMultiplier = 1
 	}
 }

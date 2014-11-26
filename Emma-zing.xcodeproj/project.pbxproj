@@ -25,6 +25,8 @@
 		422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */; };
 		422A25811A25BBE00007C0F8 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */; };
 		422A25821A25BBE00007C0F8 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257C1A25BBE00007C0F8 /* Scrape.wav */; };
+		42C5AFDA1A264B0B00DFD031 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C5AFD91A264B0B00DFD031 /* Chain.swift */; };
+		42C5AFDC1A2679C400DFD031 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C5AFDB1A2679C400DFD031 /* Level_5.json */; };
 		42FB37771A23A9BF00A44E4F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB37761A23A9BF00A44E4F /* AppDelegate.swift */; };
 		42FB377B1A23A9BF00A44E4F /* GameScene.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB377A1A23A9BF00A44E4F /* GameScene.swift */; };
 		42FB377D1A23A9BF00A44E4F /* GameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42FB377C1A23A9BF00A44E4F /* GameViewController.swift */; };
@@ -64,6 +66,8 @@
 		422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
 		422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		422A257C1A25BBE00007C0F8 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
+		42C5AFD91A264B0B00DFD031 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
+		42C5AFDB1A2679C400DFD031 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
 		42FB37711A23A9BE00A44E4F /* Emma-zing.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Emma-zing.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		42FB37751A23A9BE00A44E4F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		42FB37761A23A9BF00A44E4F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +108,7 @@
 				422A25681A25A19F0007C0F8 /* Level_2.json */,
 				422A25691A25A19F0007C0F8 /* Level_3.json */,
 				422A256A1A25A19F0007C0F8 /* Level_4.json */,
+				42C5AFDB1A2679C400DFD031 /* Level_5.json */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -124,6 +129,7 @@
 		42FB37681A23A9BE00A44E4F = {
 			isa = PBXGroup;
 			children = (
+				42C5AFD91A264B0B00DFD031 /* Chain.swift */,
 				422A25741A25AC500007C0F8 /* Swap.swift */,
 				422A25701A25A1EB0007C0F8 /* Tile.swift */,
 				422A255F1A2599220007C0F8 /* Array2D.swift */,
@@ -268,6 +274,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				42C5AFDC1A2679C400DFD031 /* Level_5.json in Resources */,
 				42FB37851A23A9BF00A44E4F /* LaunchScreen.xib in Resources */,
 				422A257E1A25BBE00007C0F8 /* Drip.wav in Resources */,
 				422A256F1A25A19F0007C0F8 /* Level_4.json in Resources */,
@@ -303,6 +310,7 @@
 				42FB377B1A23A9BF00A44E4F /* GameScene.swift in Sources */,
 				422A25641A2599D00007C0F8 /* Level.swift in Sources */,
 				42FB379D1A23B3FD00A44E4F /* Symbol.swift in Sources */,
+				42C5AFDA1A264B0B00DFD031 /* Chain.swift in Sources */,
 				422A25711A25A1EB0007C0F8 /* Tile.swift in Sources */,
 				422A25751A25AC500007C0F8 /* Swap.swift in Sources */,
 				422A25621A2599920007C0F8 /* Set.swift in Sources */,

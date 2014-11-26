@@ -28,8 +28,8 @@ class GameScene: SKScene {
 	let swapSound = SKAction.playSoundFileNamed("Chomp.wav", waitForCompletion: false)
 	let invalidSwapSound = SKAction.playSoundFileNamed("Error.wav", waitForCompletion: false)
 	let matchSound = SKAction.playSoundFileNamed("Ka-Ching.wav", waitForCompletion: false)
-	let fallingCookieSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
-	let addCookieSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
+	let fallingSymbolSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
+	let addSymbolSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder) is not used in this app")
@@ -44,6 +44,7 @@ class GameScene: SKScene {
 		addChild(background)
 		
 		addChild(gameLayer)
+		gameLayer.hidden = true
 		
 		let layerPosition = CGPoint(
 			x: -TileWidth * CGFloat(NumColumns) / 2,
@@ -57,6 +58,8 @@ class GameScene: SKScene {
 		
 		swipeFromColumn = nil
 		swipeFromRow = nil
+		
+		SKLabelNode(fontNamed: "GillSans-BoldItalic")
 	}
 	
 	func addSpritesForSymbols(symbols: Set<Symbol>) {
@@ -136,7 +139,7 @@ class GameScene: SKScene {
 		moveB.timingMode = .EaseOut
 		spriteB.runAction(moveB)
 		
-		//runAction(swapSound)
+		runAction(swapSound)
 	}
 	
 	func animateInvalidSwap(swap: Swap, completion: () -> ()) {
@@ -157,7 +160,105 @@ class GameScene: SKScene {
 		spriteA.runAction(SKAction.sequence([moveA, moveB]), completion: completion)
 		spriteB.runAction(SKAction.sequence([moveB, moveA]))
 		
-		//runAction(invalidSwapSound)
+		runAction(invalidSwapSound)
+	}
+	
+	func animateMatchedSymbols(chains: Set<Chain>, completion: () -> ()) {
+		for chain in chains {
+			
+			animateScoreForChain(chain)
+			
+			for symbol in chain.symbols {
+				if let sprite = symbol.sprite {
+					if sprite.actionForKey("removing") == nil {
+						let scaleAction = SKAction.scaleTo(0.1, duration: 0.3)
+						scaleAction.timingMode = .EaseOut
+						sprite.runAction(SKAction.sequence([scaleAction, SKAction.removeFromParent()]), withKey:"removing")
+					}
+				}
+			}
+		}
+		runAction(matchSound)
+		runAction(SKAction.waitForDuration(0.3), completion: completion)
+	}
+	
+	func animateFallingSymbols(columns: [[Symbol]], completion: () -> ()) {
+		var longestDuration: NSTimeInterval = 0
+		for array in columns {
+			for (idx, symbol) in enumerate(array) {
+				let newPosition = pointForColumn(symbol.column, row: symbol.row)
+				let delay = 0.05 + 0.15*NSTimeInterval(idx)
+				let sprite = symbol.sprite!
+				let duration = NSTimeInterval(((sprite.position.y - newPosition.y) / TileHeight) * 0.1)
+				longestDuration = max(longestDuration, duration + delay)
+				let moveAction = SKAction.moveTo(newPosition, duration: duration)
+				moveAction.timingMode = .EaseOut
+				sprite.runAction(
+					SKAction.sequence([
+					SKAction.waitForDuration(delay),
+					SKAction.group([moveAction, fallingSymbolSound])]))
+			}
+		}
+		runAction(SKAction.waitForDuration(longestDuration), completion: completion)
+	}
+	
+	func animateNewSymbols(columns: [[Symbol]], completion: () -> ()) {
+		var longestDuration: NSTimeInterval = 0
+			
+		for array in columns {
+			
+			let startRow = array[0].row + 1
+
+			for (idx, symbol) in enumerate(array) {
+				
+				let sprite = SKSpriteNode(imageNamed: symbol.symbolType.spriteName)
+				sprite.position = pointForColumn(symbol.column, row: startRow)
+				symbolsLayer.addChild(sprite)
+				symbol.sprite = sprite
+				
+				let delay = 0.1 + 0.2 * NSTimeInterval(array.count - idx - 1)
+				
+				let duration = NSTimeInterval(startRow - symbol.row) * 0.1
+				longestDuration = max(longestDuration, duration + delay)
+				
+				let newPosition = pointForColumn(symbol.column, row: symbol.row)
+				let moveAction = SKAction.moveTo(newPosition, duration: duration)
+				moveAction.timingMode = .EaseOut
+				sprite.alpha = 0
+				sprite.runAction(
+					SKAction.sequence([
+						SKAction.waitForDuration(delay),
+						SKAction.group([
+							SKAction.fadeInWithDuration(0.05),
+							moveAction,
+							addSymbolSound])
+					]))
+			}
+		}
+		// 7
+		runAction(SKAction.waitForDuration(longestDuration), completion: completion)
+	}
+	
+	func animateScoreForChain(chain: Chain) {
+		// Figure out what the midpoint of the chain is.
+		let firstSprite = chain.firstSymbol().sprite!
+		let lastSprite = chain.lastSymbol().sprite!
+		let centerPosition = CGPoint(
+			x: (firstSprite.position.x + lastSprite.position.x)/2,
+			y: (firstSprite.position.y + lastSprite.position.y)/2 - 8
+		)
+			
+		// Add a label for the score that slowly floats up.
+		let scoreLabel = SKLabelNode(fontNamed: "GillSans-BoldItalic")
+		scoreLabel.fontSize = 16
+		scoreLabel.text = NSString(format: "%ld", chain.score)
+		scoreLabel.position = centerPosition
+		scoreLabel.zPosition = 300
+		symbolsLayer.addChild(scoreLabel)
+			
+		let moveAction = SKAction.moveBy(CGVector(dx: 0, dy: 3), duration: 0.7)
+		moveAction.timingMode = .EaseOut
+		scoreLabel.runAction(SKAction.sequence([moveAction, SKAction.removeFromParent()]))
 	}
 	
 	func showSelectionIndicatorForSymbol(symbol: Symbol) {
@@ -181,6 +282,24 @@ class GameScene: SKScene {
 		selectionSprite.runAction(SKAction.sequence([
 			SKAction.fadeOutWithDuration(0.3),
 			SKAction.removeFromParent()]))
+	}
+	
+	func animateGameOver(completion: () -> ()) {
+		let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
+		action.timingMode = .EaseIn
+		gameLayer.runAction(action, completion: completion)
+	}
+ 
+	func animateBeginGame(completion: () -> ()) {
+		gameLayer.hidden = false
+		gameLayer.position = CGPoint(x: 0, y: size.height)
+		let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.height), duration: 0.3)
+		action.timingMode = .EaseOut
+		gameLayer.runAction(action, completion: completion)
+	}
+	
+	func removeAllSymbolSprites() {
+		symbolsLayer.removeAllChildren()
 	}
 	
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
