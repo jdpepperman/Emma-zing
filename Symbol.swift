@@ -40,9 +40,14 @@ enum SymbolType: Int, Printable {
 		return spriteName
 	}
 	
-	//let numSymbols = 14
 	static func random() -> SymbolType {
 		return SymbolType(rawValue: Int(arc4random_uniform(6)) + 1)!
+	}
+	
+	static func random(listToChooseFrom: [Int]) -> SymbolType
+	{
+		var index = Int(arc4random_uniform(UInt32(listToChooseFrom.count))) //5)) + 1
+		return SymbolType(rawValue: listToChooseFrom[index])!
 	}
 }
 
