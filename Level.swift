@@ -333,9 +333,9 @@ class Level
 	}
 	
 	private func calculateScores(chains: Set<Chain>) {
-		// 3-chain is 60 pts, 4-chain is 120, 5-chain is 180, and so on
+		// 3-chain is 32 pts, 4-chain is 64, 5-chain is 96, and so on
 		for chain in chains {
-			chain.score = 60 * (chain.length - 2) * comboMultiplier
+			chain.score = 32 * (chain.length - 2) * comboMultiplier
 			++comboMultiplier
 		}
 	}

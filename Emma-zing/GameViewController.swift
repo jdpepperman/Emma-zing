@@ -8,6 +8,7 @@
 
 import UIKit
 import SpriteKit
+import AVFoundation
 
 class GameViewController: UIViewController {
 	var level: Level!
@@ -17,12 +18,25 @@ class GameViewController: UIViewController {
 	var score = 0
 	
 	var tapGestureRecognizer: UITapGestureRecognizer!
+	
+	lazy var backgroundMusic: AVAudioPlayer = {
+		let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
+		let player = AVAudioPlayer(contentsOfURL: url, error: nil)
+		player.numberOfLoops = -1
+		return player
+	}()
  
 	@IBOutlet weak var targetLabel: UILabel!
 	@IBOutlet weak var movesLabel: UILabel!
 	@IBOutlet weak var scoreLabel: UILabel!
 	
 	@IBOutlet weak var gameOverPanel: UIImageView!
+	
+	@IBOutlet weak var shuffleButton: UIButton!
+	@IBAction func shuffleButtonPressed(AnyObject) {
+		shuffle()
+		decrementMoves()
+	}
  
 	override func prefersStatusBarHidden() -> Bool {
 		return true
@@ -47,7 +61,7 @@ class GameViewController: UIViewController {
 		scene = GameScene(size: skView.bounds.size)
 		scene.scaleMode = .AspectFill
 		
-		level = Level(filename: "Level_5")
+		level = Level(filename: "Level_1")
 		scene.level = level
 		
 		scene.addTiles()
@@ -55,9 +69,12 @@ class GameViewController: UIViewController {
 		scene.swipeHandler = handleSwipe
 		
 		gameOverPanel.hidden = true
+		shuffleButton.hidden = true
 		
 		// Present the scene.
 		skView.presentScene(scene)
+		
+		backgroundMusic.play()
 		
 		beginGame()
 	}
@@ -69,7 +86,9 @@ class GameViewController: UIViewController {
 		
 		level.resetComboMultiplier()
 		
-		scene.animateBeginGame() { }
+		scene.animateBeginGame() {
+			self.shuffleButton.hidden = false
+		}
 		
 		shuffle()
 	}
@@ -155,6 +174,7 @@ class GameViewController: UIViewController {
 	func showGameOver() {
 		gameOverPanel.hidden = false
 		scene.userInteractionEnabled = false
+		shuffleButton.hidden = true
 			
 		scene.animateGameOver() {
 			self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideGameOver")
