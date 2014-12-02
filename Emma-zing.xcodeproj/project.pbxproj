@@ -24,6 +24,7 @@
 		422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */; };
 		422A25811A25BBE00007C0F8 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */; };
 		422A25821A25BBE00007C0F8 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257C1A25BBE00007C0F8 /* Scrape.wav */; };
+		423DE1031A2E1DF900EC96C5 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 423DE1021A2E1DF900EC96C5 /* Level_5.json */; };
 		42C5AFDA1A264B0B00DFD031 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C5AFD91A264B0B00DFD031 /* Chain.swift */; };
 		42C5AFDC1A2679C400DFD031 /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C5AFDB1A2679C400DFD031 /* Level_4.json */; };
 		42C5AFDE1A26913900DFD031 /* Grid.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 42C5AFDD1A26913900DFD031 /* Grid.atlas */; };
@@ -65,6 +66,7 @@
 		422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
 		422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		422A257C1A25BBE00007C0F8 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
+		423DE1021A2E1DF900EC96C5 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
 		42C5AFD91A264B0B00DFD031 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		42C5AFDB1A2679C400DFD031 /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
 		42C5AFDD1A26913900DFD031 /* Grid.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Grid.atlas; sourceTree = "<group>"; };
@@ -108,6 +110,7 @@
 				422A25681A25A19F0007C0F8 /* Level_2.json */,
 				422A25691A25A19F0007C0F8 /* Level_3.json */,
 				42C5AFDB1A2679C400DFD031 /* Level_4.json */,
+				423DE1021A2E1DF900EC96C5 /* Level_5.json */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -287,6 +290,7 @@
 				42FB37821A23A9BF00A44E4F /* Images.xcassets in Resources */,
 				422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */,
 				422A255E1A2593CD0007C0F8 /* Sprites.atlas in Resources */,
+				423DE1031A2E1DF900EC96C5 /* Level_5.json in Resources */,
 				422A256C1A25A19F0007C0F8 /* Level_1.json in Resources */,
 				422A256E1A25A19F0007C0F8 /* Level_3.json in Resources */,
 				42FB37801A23A9BF00A44E4F /* Main.storyboard in Resources */,

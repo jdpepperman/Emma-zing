@@ -331,6 +331,13 @@ class GameScene: SKScene {
 		gameLayer.runAction(action, completion: completion)
 	}
 	
+	func animateShowNoSwapsLeft()
+	{
+		let action = SKAction.moveBy(CGVector(dx: 0, dy: -size.width), duration: 0.3)
+		action.timingMode = .EaseIn
+		gameLayer.runAction(action)
+	}
+	
 	func removeAllSymbolSprites() {
 		symbolsLayer.removeAllChildren()
 	}
@@ -361,7 +368,7 @@ class GameScene: SKScene {
 		if success {
 			var horzDelta = 0, vertDelta = 0
 			
-			if column < swipeFromColumn! {          // swipe left
+			if column < swipeFromColumn! {        // swipe left
 				horzDelta = -1
 			}
 			else if column > swipeFromColumn! {   // swipe right

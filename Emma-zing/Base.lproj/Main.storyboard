@@ -13,7 +13,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Target:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="tcb-jb-BUy">
-                                <rect key="frame" x="31" y="50" width="64" height="21"/>
+                                <rect key="frame" x="31" y="54" width="64" height="21"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
                                 <color key="textColor" red="0.096499794407894732" green="0.89668996710526316" blue="0.74216180098684215" alpha="1" colorSpace="calibratedRGB"/>
@@ -22,7 +22,7 @@
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="61a-et-Rzn">
-                                <rect key="frame" x="222" y="49" width="64" height="22"/>
+                                <rect key="frame" x="222" y="53" width="64" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
                                 <color key="textColor" red="0.096499794410000006" green="0.89668996710000004" blue="0.74216180099999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -31,7 +31,7 @@
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Moves:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="QUa-oh-joD">
-                                <rect key="frame" x="128" y="50" width="64" height="22"/>
+                                <rect key="frame" x="128" y="54" width="64" height="22"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
                                 <color key="textColor" red="0.096499794410000006" green="0.89668996710000004" blue="0.74216180099999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -40,7 +40,7 @@
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="paN-Ad-9bb">
-                                <rect key="frame" x="18" y="74" width="91" height="29"/>
+                                <rect key="frame" x="18" y="78" width="91" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                 <color key="textColor" red="0.096499794410000006" green="0.89668996710000004" blue="0.74216180099999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -49,7 +49,7 @@
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="vQb-DQ-1Uc">
-                                <rect key="frame" x="115" y="74" width="91" height="29"/>
+                                <rect key="frame" x="115" y="78" width="91" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                 <color key="textColor" red="0.096499794410000006" green="0.89668996710000004" blue="0.74216180099999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -57,8 +57,17 @@
                                 <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <size key="shadowOffset" width="0.0" height="1"/>
                             </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overall Score:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="BLx-dg-DvA">
+                                <rect key="frame" x="105" y="6" width="111" height="22"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="14"/>
+                                <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="65L-6y-o8f">
-                                <rect key="frame" x="209" y="74" width="91" height="29"/>
+                                <rect key="frame" x="209" y="78" width="91" height="29"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                 <color key="textColor" red="0.096499794410000006" green="0.89668996710000004" blue="0.74216180099999995" alpha="1" colorSpace="calibratedRGB"/>
@@ -71,7 +80,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="mBK-cg-c0N">
-                                <rect key="frame" x="110" y="525" width="100" height="36"/>
+                                <rect key="frame" x="204" y="512" width="100" height="36"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
                                 <size key="titleShadowOffset" width="0.0" height="1"/>
@@ -83,12 +92,27 @@
                                     <action selector="shuffleButtonPressed:" destination="LVB-YS-i5n" eventType="touchUpInside" id="sFQ-TZ-gGb"/>
                                 </connections>
                             </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="kevinWarning.jpg" id="6oh-TT-UmV">
+                                <rect key="frame" x="18" y="478" width="139" height="70"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="999999" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="J72-e7-a91">
+                                <rect key="frame" x="115" y="20" width="91" height="29"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" name="GillSans-Bold" family="Gill Sans" pointSize="20"/>
+                                <color key="textColor" red="0.0" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <color key="shadowColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <size key="shadowOffset" width="0.0" height="1"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     </view>
                     <connections>
                         <outlet property="gameOverPanel" destination="hzl-5o-VXM" id="1w4-DA-VDv"/>
                         <outlet property="movesLabel" destination="vQb-DQ-1Uc" id="YMR-uP-8bu"/>
+                        <outlet property="noMovesWarningPanel" destination="6oh-TT-UmV" id="oNN-sp-kUC"/>
+                        <outlet property="overallScoreLabel" destination="J72-e7-a91" id="pf3-KI-FDA"/>
                         <outlet property="scoreLabel" destination="65L-6y-o8f" id="U4S-K7-7Sk"/>
                         <outlet property="shuffleButton" destination="mBK-cg-c0N" id="ua0-q6-abT"/>
                         <outlet property="targetLabel" destination="paN-Ad-9bb" id="YeM-pp-A5O"/>
@@ -96,11 +120,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="btX-cZ-eVz" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="200" y="230"/>
+            <point key="canvasLocation" x="183" y="228"/>
         </scene>
     </scenes>
     <resources>
         <image name="Button" width="100" height="36"/>
+        <image name="kevinWarning.jpg" width="320" height="240"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>

@@ -10,6 +10,7 @@ import Foundation
 
 let NumColumns = 9
 let NumRows = 9
+let numLevels:UInt32 = 5
 
 class Level
 {
@@ -60,6 +61,47 @@ class Level
 		}
 	}
 	
+	/**
+		Initializes a level from a random json file.
+	*/
+	init()
+	{
+		var filename: String = "Level_"
+		filename = filename + String(Int(arc4random_uniform(numLevels)+1))
+		
+		if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename)
+		{
+			if let tilesArray: AnyObject = dictionary["tiles"]
+			{
+				for (row, rowArray) in enumerate(tilesArray as [[Int]])
+				{
+					let tileRow = NumRows - row - 1
+					
+					for (column, value) in enumerate(rowArray)
+					{
+						if value == 1
+						{
+							tiles[column, tileRow] = Tile()
+						}
+					}
+				}
+				targetScore = (dictionary["targetScore"] as NSNumber).integerValue
+				maximumMoves = (dictionary["moves"] as NSNumber).integerValue
+			}
+		}
+		
+		//initialize symbols for this level. count should be between 3 and 14.
+		while symbolsForThisLevel.count < 6
+		{
+			var symbolNum = Int(arc4random_uniform(14)) + 1
+			if !(contains(symbolsForThisLevel, symbolNum))
+			{
+				symbolsForThisLevel.append(symbolNum)
+			}
+			
+		}
+	}
+	
 	func isPossibleSwap(swap: Swap) -> Bool {
 		return possibleSwaps.containsElement(swap)
 	}
@@ -77,6 +119,8 @@ class Level
 		symbols[columnB, rowB] = swap.symbolA
 		swap.symbolA.column = columnB
 		swap.symbolA.row = rowB
+		
+		//println("Possible swaps: \(possibleSwaps)")
 	}
 	
 	func tileAtColumn(column: Int, row: Int) -> Tile? {
@@ -96,7 +140,7 @@ class Level
 		do {
 			set = createInitialSymbols()
 			detectPossibleSwaps()
-			println("possible swaps: \(possibleSwaps)")
+			//println("possible swaps: \(possibleSwaps)")
 		}
 		while possibleSwaps.count == 0
 			
@@ -217,6 +261,11 @@ class Level
 			}
 		}
 		return set
+	}
+	
+	func getNumPossibleSwaps() -> Int
+	{
+		return possibleSwaps.count
 	}
 	
 	private func removeSymbols(chains: Set<Chain>) {

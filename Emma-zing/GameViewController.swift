@@ -14,8 +14,12 @@ class GameViewController: UIViewController {
 	var level: Level!
 	var scene: GameScene!
 	
+	var overallScore = 0
+	
 	var movesLeft = 0
 	var score = 0
+	
+	var currentLevel = 0
 	
 	var tapGestureRecognizer: UITapGestureRecognizer!
 	
@@ -25,12 +29,15 @@ class GameViewController: UIViewController {
 		player.numberOfLoops = -1
 		return player
 	}()
+	
+	@IBOutlet weak var overallScoreLabel: UILabel!
  
 	@IBOutlet weak var targetLabel: UILabel!
 	@IBOutlet weak var movesLabel: UILabel!
 	@IBOutlet weak var scoreLabel: UILabel!
 	
 	@IBOutlet weak var gameOverPanel: UIImageView!
+	@IBOutlet weak var noMovesWarningPanel: UIImageView!
 	
 	@IBOutlet weak var shuffleButton: UIButton!
 	@IBAction func shuffleButtonPressed(AnyObject) {
@@ -53,6 +60,36 @@ class GameViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
+		reset()
+//		// Configure the view.
+//		let skView = view as SKView
+//		skView.multipleTouchEnabled = false
+//		
+//		// Create and configure the scene.
+//		scene = GameScene(size: skView.bounds.size)
+//		scene.scaleMode = .AspectFill
+//		
+//		//level = Level(filename: "Level_1")
+//		level = Level()
+//		scene.level = level
+//		
+//		scene.addTiles()
+//		
+//		scene.swipeHandler = handleSwipe
+//		
+//		gameOverPanel.hidden = true
+//		shuffleButton.hidden = true
+//		
+//		// Present the scene.
+//		skView.presentScene(scene)
+//		
+//		backgroundMusic.play()
+		
+		beginGame()
+	}
+	
+	func reset()
+	{
 		// Configure the view.
 		let skView = view as SKView
 		skView.multipleTouchEnabled = false
@@ -61,7 +98,9 @@ class GameViewController: UIViewController {
 		scene = GameScene(size: skView.bounds.size)
 		scene.scaleMode = .AspectFill
 		
-		level = Level(filename: "Level_1")
+		level = Level(filename: "Level_" + String(currentLevel))
+		//level = Level(filename: "Level_2")
+		//level = Level()
 		scene.level = level
 		
 		scene.addTiles()
@@ -70,16 +109,19 @@ class GameViewController: UIViewController {
 		
 		gameOverPanel.hidden = true
 		shuffleButton.hidden = true
+		noMovesWarningPanel.hidden = true
 		
 		// Present the scene.
 		skView.presentScene(scene)
 		
 		backgroundMusic.play()
 		
-		beginGame()
 	}
 	
 	func beginGame() {
+		//level = Level()
+		reset()
+		currentLevel++
 		movesLeft = level.maximumMoves
 		score = 0
 		updateLabels()
@@ -98,12 +140,15 @@ class GameViewController: UIViewController {
 		
 		let newSymbols = level.shuffle()
 		scene.addSpritesForSymbols(newSymbols)
+		
+		noMovesWarningPanel.hidden = true
 	}
 	
 	func updateLabels() {
 		targetLabel.text = NSString(format: "%ld", level.targetScore)
 		movesLabel.text = NSString(format: "%ld", movesLeft)
 		scoreLabel.text = NSString(format: "%ld", score)
+		overallScoreLabel.text = NSString(format: "%ld", overallScore)
 	}
 	
 	func decrementMoves() {
@@ -146,6 +191,7 @@ class GameViewController: UIViewController {
 			//update the score
 			for chain in chains {
 				self.score += chain.score
+				self.overallScore += chain.score
 			}
 			self.updateLabels()
 			
@@ -169,12 +215,26 @@ class GameViewController: UIViewController {
 		
 		
 		decrementMoves()
+		println("Moves left: \(level.getNumPossibleSwaps())")
+		
+		checkScore()
+		
+		//check for no moves
+		if level.getNumPossibleSwaps() == 0
+		{
+			noMovesWarningPanel.hidden = false
+		}
+		else
+		{
+			noMovesWarningPanel.hidden = true
+		}
 	}
 	
 	func showGameOver() {
 		gameOverPanel.hidden = false
 		scene.userInteractionEnabled = false
 		shuffleButton.hidden = true
+		noMovesWarningPanel.hidden = true
 			
 		scene.animateGameOver() {
 			self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideGameOver")
@@ -190,5 +250,13 @@ class GameViewController: UIViewController {
 		scene.userInteractionEnabled = true
 		
 		beginGame()
+	}
+	
+	func checkScore()
+	{
+		if overallScore == 3232
+		{
+			//overallScoreLabel.
+		}
 	}
 }

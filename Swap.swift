@@ -18,7 +18,7 @@ struct Swap: Printable, Hashable
 	}
  
 	var description: String
-		{
+	{
 		return "swap \(symbolA) with \(symbolB)"
 	}
 	
