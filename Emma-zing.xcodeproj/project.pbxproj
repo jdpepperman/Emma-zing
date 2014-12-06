@@ -24,7 +24,12 @@
 		422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */; };
 		422A25811A25BBE00007C0F8 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */; };
 		422A25821A25BBE00007C0F8 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257C1A25BBE00007C0F8 /* Scrape.wav */; };
+		423BDB7C1A339DB100032A27 /* joshAndEm.png in Resources */ = {isa = PBXBuildFile; fileRef = 423BDB7B1A339DB100032A27 /* joshAndEm.png */; };
 		423DE1031A2E1DF900EC96C5 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 423DE1021A2E1DF900EC96C5 /* Level_5.json */; };
+		427FFDBF1A3100BA002944BF /* Level_6.json in Resources */ = {isa = PBXBuildFile; fileRef = 427FFDBB1A3100BA002944BF /* Level_6.json */; };
+		427FFDC01A3100BA002944BF /* Level_7.json in Resources */ = {isa = PBXBuildFile; fileRef = 427FFDBC1A3100BA002944BF /* Level_7.json */; };
+		427FFDC11A3100BA002944BF /* Level_8.json in Resources */ = {isa = PBXBuildFile; fileRef = 427FFDBD1A3100BA002944BF /* Level_8.json */; };
+		427FFDC21A3100BA002944BF /* Level_9.json in Resources */ = {isa = PBXBuildFile; fileRef = 427FFDBE1A3100BA002944BF /* Level_9.json */; };
 		42C5AFDA1A264B0B00DFD031 /* Chain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42C5AFD91A264B0B00DFD031 /* Chain.swift */; };
 		42C5AFDC1A2679C400DFD031 /* Level_4.json in Resources */ = {isa = PBXBuildFile; fileRef = 42C5AFDB1A2679C400DFD031 /* Level_4.json */; };
 		42C5AFDE1A26913900DFD031 /* Grid.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 42C5AFDD1A26913900DFD031 /* Grid.atlas */; };
@@ -66,7 +71,12 @@
 		422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
 		422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		422A257C1A25BBE00007C0F8 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
+		423BDB7B1A339DB100032A27 /* joshAndEm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joshAndEm.png; sourceTree = "<group>"; };
 		423DE1021A2E1DF900EC96C5 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
+		427FFDBB1A3100BA002944BF /* Level_6.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_6.json; sourceTree = "<group>"; };
+		427FFDBC1A3100BA002944BF /* Level_7.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_7.json; sourceTree = "<group>"; };
+		427FFDBD1A3100BA002944BF /* Level_8.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_8.json; sourceTree = "<group>"; };
+		427FFDBE1A3100BA002944BF /* Level_9.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_9.json; sourceTree = "<group>"; };
 		42C5AFD91A264B0B00DFD031 /* Chain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Chain.swift; sourceTree = "<group>"; };
 		42C5AFDB1A2679C400DFD031 /* Level_4.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_4.json; sourceTree = "<group>"; };
 		42C5AFDD1A26913900DFD031 /* Grid.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Grid.atlas; sourceTree = "<group>"; };
@@ -111,6 +121,10 @@
 				422A25691A25A19F0007C0F8 /* Level_3.json */,
 				42C5AFDB1A2679C400DFD031 /* Level_4.json */,
 				423DE1021A2E1DF900EC96C5 /* Level_5.json */,
+				427FFDBB1A3100BA002944BF /* Level_6.json */,
+				427FFDBC1A3100BA002944BF /* Level_7.json */,
+				427FFDBD1A3100BA002944BF /* Level_8.json */,
+				427FFDBE1A3100BA002944BF /* Level_9.json */,
 			);
 			path = Levels;
 			sourceTree = "<group>";
@@ -175,6 +189,7 @@
 		42FB37741A23A9BE00A44E4F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				423BDB7B1A339DB100032A27 /* joshAndEm.png */,
 				42FB37751A23A9BE00A44E4F /* Info.plist */,
 			);
 			name = "Supporting Files";
@@ -246,6 +261,7 @@
 				TargetAttributes = {
 					42FB37701A23A9BE00A44E4F = {
 						CreatedOnToolsVersion = 6.1;
+						DevelopmentTeam = 8XN73R294D;
 					};
 					42FB37891A23A9BF00A44E4F = {
 						CreatedOnToolsVersion = 6.1;
@@ -278,7 +294,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				42C5AFDC1A2679C400DFD031 /* Level_4.json in Resources */,
+				427FFDC21A3100BA002944BF /* Level_9.json in Resources */,
+				427FFDC01A3100BA002944BF /* Level_7.json in Resources */,
+				427FFDBF1A3100BA002944BF /* Level_6.json in Resources */,
 				42FB37851A23A9BF00A44E4F /* LaunchScreen.xib in Resources */,
+				423BDB7C1A339DB100032A27 /* joshAndEm.png in Resources */,
 				42C5AFDE1A26913900DFD031 /* Grid.atlas in Resources */,
 				422A257E1A25BBE00007C0F8 /* Drip.wav in Resources */,
 				422A257F1A25BBE00007C0F8 /* Error.wav in Resources */,
@@ -286,6 +306,7 @@
 				422A25821A25BBE00007C0F8 /* Scrape.wav in Resources */,
 				422A256B1A25A19F0007C0F8 /* Level_0.json in Resources */,
 				422A257D1A25BBE00007C0F8 /* Chomp.wav in Resources */,
+				427FFDC11A3100BA002944BF /* Level_8.json in Resources */,
 				422A25811A25BBE00007C0F8 /* Mining by Moonlight.mp3 in Resources */,
 				42FB37821A23A9BF00A44E4F /* Images.xcassets in Resources */,
 				422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */,
@@ -444,9 +465,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Emma-zing/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -454,9 +478,12 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Emma-zing/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

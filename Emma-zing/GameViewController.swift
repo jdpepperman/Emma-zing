@@ -256,7 +256,11 @@ class GameViewController: UIViewController {
 	{
 		if overallScore == 3232
 		{
-			//overallScoreLabel.
+			overallScoreLabel.textColor = UIColor.redColor()
+		}
+		else
+		{
+			overallScoreLabel.textColor = UIColor.cyanColor()
 		}
 	}
 }
