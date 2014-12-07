@@ -149,7 +149,7 @@ class GameViewController: UIViewController {
 	
 	func handleSwipe(swap: Swap) {
 		view.userInteractionEnabled = false
-		//level.removeRandomSymbols(5)
+		
 		if level.isPossibleSwap(swap) {
 			level.performSwap(swap)
 			scene.animateSwap(swap, completion: handleMatches)
