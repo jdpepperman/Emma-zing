@@ -254,6 +254,7 @@ class GameViewController: UIViewController {
 		gameOverPanel.hidden = true
 		scene.userInteractionEnabled = true
 		
+		//if there are no more levels, show high score, otherwise begin next level
 		beginGame()
 	}
 	

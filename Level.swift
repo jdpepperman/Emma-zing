@@ -10,7 +10,7 @@ import Foundation
 
 let NumColumns = 9
 let NumRows = 9
-let numLevels:UInt32 = 10
+let numLevels:UInt32 = 11
 
 class Level
 {
@@ -30,6 +30,7 @@ class Level
 	init(filename: String)
 	{
 		if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle(filename)
+		//if let dictionary = Dictionary<String, AnyObject>.loadJSONFromBundle("Level_10")
 		{
 			if let tilesArray: AnyObject = dictionary["tiles"]
 			{
@@ -48,6 +49,10 @@ class Level
 				targetScore = (dictionary["targetScore"] as NSNumber).integerValue
 				maximumMoves = (dictionary["moves"] as NSNumber).integerValue
 			}
+		}
+		else
+		{
+			println("no more levels")
 		}
 		
 		//initialize symbols for this level. count should be between 3 and 14.
