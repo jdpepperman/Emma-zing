@@ -200,13 +200,6 @@ class GameViewController: UIViewController {
 		
 		scene.animateRemoveSymbols(symbols)
 		{
-			//update the score
-//			for symbol in symbols {
-//				self.score += chain.score
-//				self.overallScore += chain.score
-//			}
-//			self.updateLabels()
-//			
 			//fill up the empty spots
 			let columns = self.level.fillHoles()
 			self.scene.animateFallingSymbols(columns) {
