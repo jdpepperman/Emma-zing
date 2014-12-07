@@ -10,7 +10,7 @@ import Foundation
 
 let NumColumns = 9
 let NumRows = 9
-let numLevels:UInt32 = 5
+let numLevels:UInt32 = 10
 
 class Level
 {
@@ -23,6 +23,7 @@ class Level
 	private var possibleSwaps = Set<Swap>()
 	
 	var symbolsForThisLevel: [Int] = []
+	var isWon: Bool = false
 	
 	private var comboMultiplier = 0
 
@@ -274,6 +275,38 @@ class Level
 				symbols[symbol.column, symbol.row] = nil
 			}
 		}
+		//removeRandomSymbols(5)
+		//if the game is won and theres more moves left, remove some random ones too.
+		//use this in lieu of the one beneath this.
+	}
+	
+	//remove a number of random symbols from the board
+	func removeRandomSymbols(numberToRemove: Int) -> Set<Symbol>
+	{
+		var symbolsToRemove: [Symbol] = []
+		while symbolsToRemove.count < numberToRemove
+		{
+			var row = Int(arc4random_uniform(NumRows+0))
+			var col = Int(arc4random_uniform(NumColumns+0))
+			
+			if tiles[col, row] != nil //&& !contains(symbolsToRemove, symbols[col, row])
+			{
+				if !(symbolsToRemove as NSArray).containsObject(symbols[col, row]!)
+				{
+					symbolsToRemove.append(symbols[col, row]!)
+				}
+				
+			}
+		}
+		
+		var set = Set<Symbol>()
+		for symbol in symbolsToRemove
+		{
+			set.addElement(symbol)
+			symbols[symbol.column, symbol.row] = nil
+		}
+		
+		return set
 	}
 	
 	func removeMatches() -> Set<Chain> {

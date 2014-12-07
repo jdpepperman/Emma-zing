@@ -61,29 +61,6 @@ class GameViewController: UIViewController {
 		super.viewDidLoad()
 		
 		reset()
-//		// Configure the view.
-//		let skView = view as SKView
-//		skView.multipleTouchEnabled = false
-//		
-//		// Create and configure the scene.
-//		scene = GameScene(size: skView.bounds.size)
-//		scene.scaleMode = .AspectFill
-//		
-//		//level = Level(filename: "Level_1")
-//		level = Level()
-//		scene.level = level
-//		
-//		scene.addTiles()
-//		
-//		scene.swipeHandler = handleSwipe
-//		
-//		gameOverPanel.hidden = true
-//		shuffleButton.hidden = true
-//		
-//		// Present the scene.
-//		skView.presentScene(scene)
-//		
-//		backgroundMusic.play()
 		
 		beginGame()
 	}
@@ -99,8 +76,6 @@ class GameViewController: UIViewController {
 		scene.scaleMode = .AspectFill
 		
 		level = Level(filename: "Level_" + String(currentLevel))
-		//level = Level(filename: "Level_2")
-		//level = Level()
 		scene.level = level
 		
 		scene.addTiles()
@@ -119,7 +94,6 @@ class GameViewController: UIViewController {
 	}
 	
 	func beginGame() {
-		//level = Level()
 		reset()
 		currentLevel++
 		movesLeft = level.maximumMoves
@@ -152,21 +126,30 @@ class GameViewController: UIViewController {
 	}
 	
 	func decrementMoves() {
-		--movesLeft
+		if movesLeft > 0 { --movesLeft }
 		updateLabels()
 		
-		if score >= level.targetScore {
-			gameOverPanel.image = UIImage(named: "LevelComplete")
-			showGameOver()
-		} else if movesLeft == 0 {
+		if movesLeft == 0 && level.targetScore > score
+		{
 			gameOverPanel.image = UIImage(named: "GameOver")
+			showGameOver()
+		}
+		else if score >= level.targetScore && movesLeft > 0
+		{
+			view.userInteractionEnabled = false
+			handleExtraMoves()
+			movesLeft = 0
+		}
+		else if movesLeft <= 0
+		{
+			gameOverPanel.image = UIImage(named: "LevelComplete")
 			showGameOver()
 		}
 	}
 	
 	func handleSwipe(swap: Swap) {
 		view.userInteractionEnabled = false
-			
+		//level.removeRandomSymbols(5)
 		if level.isPossibleSwap(swap) {
 			level.performSwap(swap)
 			scene.animateSwap(swap, completion: handleMatches)
@@ -195,6 +178,35 @@ class GameViewController: UIViewController {
 			}
 			self.updateLabels()
 			
+			//fill up the empty spots
+			let columns = self.level.fillHoles()
+			self.scene.animateFallingSymbols(columns) {
+				let columns = self.level.topUpSymbols()
+				self.scene.animateNewSymbols(columns) {
+					self.handleMatches()
+				}
+			}
+		}
+	}
+	
+	func handleExtraMoves()
+	{
+		let symbols = level.removeRandomSymbols(movesLeft)
+		
+		if symbols.count == 0
+		{
+			return
+		}
+		
+		scene.animateRemoveSymbols(symbols)
+		{
+			//update the score
+//			for symbol in symbols {
+//				self.score += chain.score
+//				self.overallScore += chain.score
+//			}
+//			self.updateLabels()
+//			
 			//fill up the empty spots
 			let columns = self.level.fillHoles()
 			self.scene.animateFallingSymbols(columns) {

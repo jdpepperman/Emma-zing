@@ -215,6 +215,21 @@ class GameScene: SKScene {
 		runAction(SKAction.waitForDuration(0.3), completion: completion)
 	}
 	
+	func animateRemoveSymbols(symbols: Set<Symbol>, completion: () -> ())
+	{
+		for symbol in symbols {
+			if let sprite = symbol.sprite {
+				if sprite.actionForKey("removing") == nil {
+					let scaleAction = SKAction.scaleTo(0.1, duration: 0.3)
+					scaleAction.timingMode = .EaseOut
+					sprite.runAction(SKAction.sequence([scaleAction, SKAction.removeFromParent()]), withKey:"removing")
+				}
+			}
+		}
+		//runAction(matchSound)
+		runAction(SKAction.waitForDuration(0.3), completion: completion)
+	}
+	
 	func animateFallingSymbols(columns: [[Symbol]], completion: () -> ()) {
 		var longestDuration: NSTimeInterval = 0
 		for array in columns {
