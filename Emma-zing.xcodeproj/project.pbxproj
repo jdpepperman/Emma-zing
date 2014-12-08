@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		42034A111A34DD20004531E9 /* Level_10.json in Resources */ = {isa = PBXBuildFile; fileRef = 42034A101A34DD20004531E9 /* Level_10.json */; };
-		42034A131A34E594004531E9 /* HighScoreScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 42034A121A34E594004531E9 /* HighScoreScreen.swift */; };
 		422A255E1A2593CD0007C0F8 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 422A255D1A2593CD0007C0F8 /* Sprites.atlas */; };
 		422A25601A2599220007C0F8 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422A255F1A2599220007C0F8 /* Array2D.swift */; };
 		422A25621A2599920007C0F8 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422A25611A2599920007C0F8 /* Set.swift */; };
@@ -57,7 +56,6 @@
 
 /* Begin PBXFileReference section */
 		42034A101A34DD20004531E9 /* Level_10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_10.json; sourceTree = "<group>"; };
-		42034A121A34E594004531E9 /* HighScoreScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = HighScoreScreen.swift; path = ../HighScoreScreen.swift; sourceTree = "<group>"; };
 		422A255D1A2593CD0007C0F8 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		422A255F1A2599220007C0F8 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		422A25611A2599920007C0F8 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
@@ -183,7 +181,6 @@
 				42FB37761A23A9BF00A44E4F /* AppDelegate.swift */,
 				42FB377A1A23A9BF00A44E4F /* GameScene.swift */,
 				42FB377C1A23A9BF00A44E4F /* GameViewController.swift */,
-				42034A121A34E594004531E9 /* HighScoreScreen.swift */,
 				42FB377E1A23A9BF00A44E4F /* Main.storyboard */,
 				42FB37811A23A9BF00A44E4F /* Images.xcassets */,
 				42FB37831A23A9BF00A44E4F /* LaunchScreen.xib */,
@@ -347,7 +344,6 @@
 				422A25751A25AC500007C0F8 /* Swap.swift in Sources */,
 				422A25621A2599920007C0F8 /* Set.swift in Sources */,
 				42FB377D1A23A9BF00A44E4F /* GameViewController.swift in Sources */,
-				42034A131A34E594004531E9 /* HighScoreScreen.swift in Sources */,
 				42FB37771A23A9BF00A44E4F /* AppDelegate.swift in Sources */,
 				422A25731A25A2960007C0F8 /* Extenstions.swift in Sources */,
 				422A25601A2599220007C0F8 /* Array2D.swift in Sources */,

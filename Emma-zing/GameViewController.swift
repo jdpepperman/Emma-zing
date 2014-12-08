@@ -19,9 +19,12 @@ class GameViewController: UIViewController {
 	var movesLeft = 0
 	var score = 0
 	
-	var currentLevel = 0
+	var currentLevel = 9
+	let finalLevel = 10
 	
 	var tapGestureRecognizer: UITapGestureRecognizer!
+	
+	var defaults = NSUserDefaults.standardUserDefaults()
 	
 	lazy var backgroundMusic: AVAudioPlayer = {
 		let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
@@ -30,11 +33,22 @@ class GameViewController: UIViewController {
 		return player
 	}()
 	
+	@IBOutlet weak var overallScoreTextLabel: UILabel!
 	@IBOutlet weak var overallScoreLabel: UILabel!
  
+	@IBOutlet weak var targetTextLabel: UILabel!
 	@IBOutlet weak var targetLabel: UILabel!
+	@IBOutlet weak var movesTextLabel: UILabel!
 	@IBOutlet weak var movesLabel: UILabel!
+	@IBOutlet weak var scoreTextLabel: UILabel!
 	@IBOutlet weak var scoreLabel: UILabel!
+	
+	@IBOutlet weak var levelTextLabel: UILabel!
+	@IBOutlet weak var levelLabel: UILabel!
+	@IBOutlet weak var finalScoreTextLabel: UILabel!
+	@IBOutlet weak var finalScoreLabel: UILabel!
+	@IBOutlet weak var highScoreTextLabel: UILabel!
+	@IBOutlet weak var highScoreLabel: UILabel!
 	
 	@IBOutlet weak var gameOverPanel: UIImageView!
 	@IBOutlet weak var noMovesWarningPanel: UIImageView!
@@ -60,8 +74,9 @@ class GameViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		reset()
 		
+		
+		reset()
 		beginGame()
 	}
 	
@@ -94,9 +109,11 @@ class GameViewController: UIViewController {
 	}
 	
 	func beginGame() {
-		reset()
 		currentLevel++
+		reset()
+		
 		movesLeft = level.maximumMoves
+		
 		score = 0
 		updateLabels()
 		
@@ -107,6 +124,35 @@ class GameViewController: UIViewController {
 		}
 		
 		shuffle()
+	}
+	
+	func endGame()
+	{
+		finalScoreLabel.text = String(overallScore)
+		var highScore: Int = defaults.integerForKey("highScore")
+		highScoreLabel.text = String(highScore)
+		if overallScore > highScore
+		{
+			defaults.setInteger(overallScore, forKey: "highScore")
+		}
+		
+		
+		overallScoreTextLabel.hidden = true
+		overallScoreLabel.hidden = true
+		targetTextLabel.hidden = true
+		targetLabel.hidden = true
+		movesTextLabel.hidden = true
+		movesLabel.hidden = true
+		scoreTextLabel.hidden = true
+		scoreLabel.hidden = true
+		levelTextLabel.hidden = true
+		levelLabel.hidden = true
+		noMovesWarningPanel.hidden = true
+		
+		finalScoreTextLabel.hidden = false
+		finalScoreLabel.hidden = false
+		highScoreTextLabel.hidden = false
+		highScoreLabel.hidden = false
 	}
  
 	func shuffle() {
@@ -123,6 +169,7 @@ class GameViewController: UIViewController {
 		movesLabel.text = NSString(format: "%ld", movesLeft)
 		scoreLabel.text = NSString(format: "%ld", score)
 		overallScoreLabel.text = NSString(format: "%ld", overallScore)
+		levelLabel.text = NSString(format: "%ld", currentLevel)
 	}
 	
 	func decrementMoves() {
@@ -255,7 +302,15 @@ class GameViewController: UIViewController {
 		scene.userInteractionEnabled = true
 		
 		//if there are no more levels, show high score, otherwise begin next level
-		beginGame()
+		if currentLevel >= finalLevel
+		{
+			endGame()
+			//beginGame()
+		}
+		else
+		{
+			beginGame()
+		}
 	}
 	
 	func checkScore()

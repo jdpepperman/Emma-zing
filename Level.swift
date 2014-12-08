@@ -280,9 +280,6 @@ class Level
 				symbols[symbol.column, symbol.row] = nil
 			}
 		}
-		//removeRandomSymbols(5)
-		//if the game is won and theres more moves left, remove some random ones too.
-		//use this in lieu of the one beneath this.
 	}
 	
 	//remove a number of random symbols from the board
@@ -294,7 +291,7 @@ class Level
 			var row = Int(arc4random_uniform(NumRows+0))
 			var col = Int(arc4random_uniform(NumColumns+0))
 			
-			if tiles[col, row] != nil //&& !contains(symbolsToRemove, symbols[col, row])
+			if tiles[col, row] != nil
 			{
 				if !(symbolsToRemove as NSArray).containsObject(symbols[col, row]!)
 				{
