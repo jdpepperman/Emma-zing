@@ -87,7 +87,37 @@ class GameViewController: UIViewController {
 		decrementMoves()
 	}
 	
- 
+	@IBOutlet weak var toggleSoundButton: UIButton!
+	@IBAction func toggleSoundButtonPressed(AnyObject) {
+		scene.isMuted = !scene.isMuted
+		defaults.setBool(scene.isMuted, forKey: "soundEffects")
+		
+		if scene.isMuted
+		{
+			backgroundMusic.stop()
+			toggleSoundButtonTexture()
+		}
+		else
+		{
+			backgroundMusic.play()
+			toggleSoundButtonTexture()
+		}
+	}
+	
+	private func toggleSoundButtonTexture()
+	{
+		let soundOnImage: UIImage = UIImage(named: "TurnSoundOnButton")!
+		let soundOffImage: UIImage = UIImage(named: "TurnSoundOffButton")!
+		if scene.isMuted
+		{
+			toggleSoundButton.setImage(soundOnImage, forState: UIControlState.Normal)
+		}
+		else
+		{
+			toggleSoundButton.setImage(soundOffImage, forState: UIControlState.Normal)
+		}
+	}
+	
 	override func prefersStatusBarHidden() -> Bool {
 		return true
 	}
@@ -103,8 +133,6 @@ class GameViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		
-		
 		reset()
 		beginGame()
 	}
@@ -114,6 +142,14 @@ class GameViewController: UIViewController {
 		// Configure the view.
 		let skView = view as SKView
 		skView.multipleTouchEnabled = false
+		
+		//var prevMuteSelection: Bool? = false
+		var prevMuteSelection:Bool? = defaults.boolForKey("soundEffects")
+		if scene != nil
+		{
+			prevMuteSelection = scene.isMuted
+		}
+		
 		
 		// Create and configure the scene.
 		scene = GameScene(size: skView.bounds.size)
@@ -130,10 +166,19 @@ class GameViewController: UIViewController {
 		shuffleButton.hidden = true
 		noMovesWarningPanel.hidden = true
 		
+		if prevMuteSelection != nil
+		{
+			scene.isMuted = prevMuteSelection!
+		}
+		toggleSoundButtonTexture()
+		
 		// Present the scene.
 		skView.presentScene(scene)
 		
-		backgroundMusic.play()
+		if !scene.isMuted
+		{
+			backgroundMusic.play()
+		}
 		
 	}
 	
@@ -210,6 +255,10 @@ class GameViewController: UIViewController {
 		if movesLeft == 0 && level.targetScore > score
 		{
 			gameOverPanel.image = UIImage(named: "GameOver")
+			
+			var scoreToLose = level.targetScore/10 * level.maximumMoves
+			overallScore -= scoreToLose
+			
 			showGameOver()
 		}
 		else if score >= level.targetScore && movesLeft > 0

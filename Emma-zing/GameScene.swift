@@ -243,10 +243,18 @@ class GameScene: SKScene {
 				longestDuration = max(longestDuration, duration + delay)
 				let moveAction = SKAction.moveTo(newPosition, duration: duration)
 				moveAction.timingMode = .EaseOut
-				sprite.runAction(
-					SKAction.sequence([
-					SKAction.waitForDuration(delay),
-					SKAction.group([moveAction, fallingSymbolSound])]))
+				if isMuted {
+					sprite.runAction(
+						SKAction.sequence([
+							SKAction.waitForDuration(delay),
+							SKAction.group([moveAction])]))
+				}
+				else {
+					sprite.runAction(
+						SKAction.sequence([
+						SKAction.waitForDuration(delay),
+						SKAction.group([moveAction, fallingSymbolSound])]))
+				}
 			}
 		}
 		runAction(SKAction.waitForDuration(longestDuration), completion: completion)
@@ -275,14 +283,25 @@ class GameScene: SKScene {
 				let moveAction = SKAction.moveTo(newPosition, duration: duration)
 				moveAction.timingMode = .EaseOut
 				sprite.alpha = 0
-				sprite.runAction(
-					SKAction.sequence([
-						SKAction.waitForDuration(delay),
-						SKAction.group([
-							SKAction.fadeInWithDuration(0.05),
-							moveAction,
-							addSymbolSound])
-					]))
+				if isMuted {
+					sprite.runAction(
+						SKAction.sequence([
+							SKAction.waitForDuration(delay),
+							SKAction.group([
+								SKAction.fadeInWithDuration(0.05),
+								moveAction])
+							]))
+				}
+				else {
+					sprite.runAction(
+						SKAction.sequence([
+							SKAction.waitForDuration(delay),
+							SKAction.group([
+								SKAction.fadeInWithDuration(0.05),
+								moveAction,
+								addSymbolSound])
+						]))
+				}
 			}
 		}
 		
