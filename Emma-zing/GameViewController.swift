@@ -19,8 +19,8 @@ class GameViewController: UIViewController {
 	var movesLeft = 0
 	var score = 0
 	
-	var currentLevel = 9
-	let finalLevel = 10
+	var currentLevel = 31 //last level -1
+	let finalLevel = 32
 	
 	var tapGestureRecognizer: UITapGestureRecognizer!
 	
@@ -155,6 +155,7 @@ class GameViewController: UIViewController {
 		scene = GameScene(size: skView.bounds.size)
 		scene.scaleMode = .AspectFill
 		
+		currentLevel = defaults.integerForKey("currentLevel")
 		level = Level(filename: "Level_" + String(currentLevel))
 		scene.level = level
 		
@@ -184,6 +185,7 @@ class GameViewController: UIViewController {
 	
 	func beginGame() {
 		currentLevel++
+		defaults.setInteger(currentLevel-1, forKey: "currentLevel")
 		reset()
 		
 		movesLeft = level.maximumMoves

@@ -10,7 +10,7 @@ import Foundation
 
 let NumColumns = 9
 let NumRows = 9
-let numLevels:UInt32 = 11
+let numLevels:UInt32 = 32
 
 class Level
 {
