@@ -27,11 +27,12 @@ class GameViewController: UIViewController {
 	var defaults = NSUserDefaults.standardUserDefaults()
 	
 	lazy var backgroundMusic: AVAudioPlayer = {
-		let url = NSBundle.mainBundle().URLForResource("Mining by Moonlight", withExtension: "mp3")
+		let url = NSBundle.mainBundle().URLForResource("GlassForEmmaSoft", withExtension: "mp3")
 		let player = AVAudioPlayer(contentsOfURL: url, error: nil)
 		player.numberOfLoops = -1
 		return player
 	}()
+	
 	
 	@IBOutlet weak var overallScoreTextLabel: UILabel!
 	@IBOutlet weak var overallScoreLabel: UILabel!
@@ -49,6 +50,33 @@ class GameViewController: UIViewController {
 	@IBOutlet weak var finalScoreLabel: UILabel!
 	@IBOutlet weak var highScoreTextLabel: UILabel!
 	@IBOutlet weak var highScoreLabel: UILabel!
+	@IBOutlet weak var playAgainButton: UIButton!
+	@IBAction func playAgainButtonPressed(AnyObject) {
+		overallScoreTextLabel.hidden = false
+		overallScoreLabel.hidden = false
+		targetTextLabel.hidden = false
+		targetLabel.hidden = false
+		movesTextLabel.hidden = false
+		movesLabel.hidden = false
+		scoreTextLabel.hidden = false
+		scoreLabel.hidden = false
+		levelTextLabel.hidden = false
+		levelLabel.hidden = false
+		noMovesWarningPanel.hidden = false
+		
+		finalScoreTextLabel.hidden = true
+		finalScoreLabel.hidden = true
+		highScoreTextLabel.hidden = true
+		highScoreLabel.hidden = true
+		playAgainButton.hidden = true
+		
+		currentLevel = 0
+		score = 0
+		overallScore = 0
+		
+		reset()
+		beginGame()
+	}
 	
 	@IBOutlet weak var gameOverPanel: UIImageView!
 	@IBOutlet weak var noMovesWarningPanel: UIImageView!
@@ -58,6 +86,7 @@ class GameViewController: UIViewController {
 		shuffle()
 		decrementMoves()
 	}
+	
  
 	override func prefersStatusBarHidden() -> Bool {
 		return true
@@ -121,6 +150,7 @@ class GameViewController: UIViewController {
 		
 		scene.animateBeginGame() {
 			self.shuffleButton.hidden = false
+			self.noMovesWarningPanel.hidden = true
 		}
 		
 		shuffle()
@@ -153,6 +183,7 @@ class GameViewController: UIViewController {
 		finalScoreLabel.hidden = false
 		highScoreTextLabel.hidden = false
 		highScoreLabel.hidden = false
+		playAgainButton.hidden = false
 	}
  
 	func shuffle() {
@@ -245,6 +276,10 @@ class GameViewController: UIViewController {
 			return
 		}
 		
+		//add the value of 1 match for each move left
+		score += symbols.count*32
+		overallScore += symbols.count*32
+		
 		scene.animateRemoveSymbols(symbols)
 		{
 			//fill up the empty spots
@@ -272,8 +307,9 @@ class GameViewController: UIViewController {
 		checkScore()
 		
 		//check for no moves
-		if level.getNumPossibleSwaps() == 0
+		if level.getNumPossibleSwaps() == 0 && score < level.targetScore
 		{
+			scene.noMoves()
 			noMovesWarningPanel.hidden = false
 		}
 		else
@@ -283,10 +319,10 @@ class GameViewController: UIViewController {
 	}
 	
 	func showGameOver() {
+		noMovesWarningPanel.hidden = true
 		gameOverPanel.hidden = false
 		scene.userInteractionEnabled = false
 		shuffleButton.hidden = true
-		noMovesWarningPanel.hidden = true
 			
 		scene.animateGameOver() {
 			self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideGameOver")
@@ -305,7 +341,6 @@ class GameViewController: UIViewController {
 		if currentLevel >= finalLevel
 		{
 			endGame()
-			//beginGame()
 		}
 		else
 		{
@@ -315,7 +350,7 @@ class GameViewController: UIViewController {
 	
 	func checkScore()
 	{
-		if overallScore == 3232
+		if overallScore == 3232 || overallScore == 323232
 		{
 			overallScoreLabel.textColor = UIColor.redColor()
 		}

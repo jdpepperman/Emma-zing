@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		42034A111A34DD20004531E9 /* Level_10.json in Resources */ = {isa = PBXBuildFile; fileRef = 42034A101A34DD20004531E9 /* Level_10.json */; };
+		421BDE0B1A3D3BA1004F5C2E /* GlassForEmmaSoft.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 421BDE0A1A3D3BA1004F5C2E /* GlassForEmmaSoft.mp3 */; };
+		421BDE0D1A3D3DD6004F5C2E /* warning.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 421BDE0C1A3D3DD6004F5C2E /* warning.mp3 */; };
 		422A255E1A2593CD0007C0F8 /* Sprites.atlas in Resources */ = {isa = PBXBuildFile; fileRef = 422A255D1A2593CD0007C0F8 /* Sprites.atlas */; };
 		422A25601A2599220007C0F8 /* Array2D.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422A255F1A2599220007C0F8 /* Array2D.swift */; };
 		422A25621A2599920007C0F8 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 422A25611A2599920007C0F8 /* Set.swift */; };
@@ -23,7 +25,6 @@
 		422A257E1A25BBE00007C0F8 /* Drip.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A25781A25BBE00007C0F8 /* Drip.wav */; };
 		422A257F1A25BBE00007C0F8 /* Error.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A25791A25BBE00007C0F8 /* Error.wav */; };
 		422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */; };
-		422A25811A25BBE00007C0F8 /* Mining by Moonlight.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */; };
 		422A25821A25BBE00007C0F8 /* Scrape.wav in Resources */ = {isa = PBXBuildFile; fileRef = 422A257C1A25BBE00007C0F8 /* Scrape.wav */; };
 		423BDB7C1A339DB100032A27 /* joshAndEm.png in Resources */ = {isa = PBXBuildFile; fileRef = 423BDB7B1A339DB100032A27 /* joshAndEm.png */; };
 		423DE1031A2E1DF900EC96C5 /* Level_5.json in Resources */ = {isa = PBXBuildFile; fileRef = 423DE1021A2E1DF900EC96C5 /* Level_5.json */; };
@@ -56,6 +57,8 @@
 
 /* Begin PBXFileReference section */
 		42034A101A34DD20004531E9 /* Level_10.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_10.json; sourceTree = "<group>"; };
+		421BDE0A1A3D3BA1004F5C2E /* GlassForEmmaSoft.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = GlassForEmmaSoft.mp3; sourceTree = "<group>"; };
+		421BDE0C1A3D3DD6004F5C2E /* warning.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = warning.mp3; sourceTree = "<group>"; };
 		422A255D1A2593CD0007C0F8 /* Sprites.atlas */ = {isa = PBXFileReference; lastKnownFileType = folder.skatlas; path = Sprites.atlas; sourceTree = "<group>"; };
 		422A255F1A2599220007C0F8 /* Array2D.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Array2D.swift; sourceTree = "<group>"; };
 		422A25611A2599920007C0F8 /* Set.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
@@ -71,7 +74,6 @@
 		422A25781A25BBE00007C0F8 /* Drip.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Drip.wav; sourceTree = "<group>"; };
 		422A25791A25BBE00007C0F8 /* Error.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Error.wav; sourceTree = "<group>"; };
 		422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = "Ka-Ching.wav"; sourceTree = "<group>"; };
-		422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = "Mining by Moonlight.mp3"; sourceTree = "<group>"; };
 		422A257C1A25BBE00007C0F8 /* Scrape.wav */ = {isa = PBXFileReference; lastKnownFileType = audio.wav; path = Scrape.wav; sourceTree = "<group>"; };
 		423BDB7B1A339DB100032A27 /* joshAndEm.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = joshAndEm.png; sourceTree = "<group>"; };
 		423DE1021A2E1DF900EC96C5 /* Level_5.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = Level_5.json; sourceTree = "<group>"; };
@@ -135,11 +137,12 @@
 		422A25761A25BBE00007C0F8 /* Sounds */ = {
 			isa = PBXGroup;
 			children = (
+				421BDE0A1A3D3BA1004F5C2E /* GlassForEmmaSoft.mp3 */,
+				421BDE0C1A3D3DD6004F5C2E /* warning.mp3 */,
 				422A25771A25BBE00007C0F8 /* Chomp.wav */,
 				422A25781A25BBE00007C0F8 /* Drip.wav */,
 				422A25791A25BBE00007C0F8 /* Error.wav */,
 				422A257A1A25BBE00007C0F8 /* Ka-Ching.wav */,
-				422A257B1A25BBE00007C0F8 /* Mining by Moonlight.mp3 */,
 				422A257C1A25BBE00007C0F8 /* Scrape.wav */,
 			);
 			path = Sounds;
@@ -298,6 +301,7 @@
 			files = (
 				42C5AFDC1A2679C400DFD031 /* Level_4.json in Resources */,
 				427FFDC21A3100BA002944BF /* Level_9.json in Resources */,
+				421BDE0B1A3D3BA1004F5C2E /* GlassForEmmaSoft.mp3 in Resources */,
 				427FFDC01A3100BA002944BF /* Level_7.json in Resources */,
 				427FFDBF1A3100BA002944BF /* Level_6.json in Resources */,
 				42FB37851A23A9BF00A44E4F /* LaunchScreen.xib in Resources */,
@@ -310,8 +314,8 @@
 				422A25821A25BBE00007C0F8 /* Scrape.wav in Resources */,
 				422A256B1A25A19F0007C0F8 /* Level_0.json in Resources */,
 				422A257D1A25BBE00007C0F8 /* Chomp.wav in Resources */,
+				421BDE0D1A3D3DD6004F5C2E /* warning.mp3 in Resources */,
 				427FFDC11A3100BA002944BF /* Level_8.json in Resources */,
-				422A25811A25BBE00007C0F8 /* Mining by Moonlight.mp3 in Resources */,
 				42FB37821A23A9BF00A44E4F /* Images.xcassets in Resources */,
 				422A25801A25BBE00007C0F8 /* Ka-Ching.wav in Resources */,
 				422A255E1A2593CD0007C0F8 /* Sprites.atlas in Resources */,

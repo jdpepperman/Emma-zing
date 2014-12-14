@@ -25,11 +25,13 @@ class GameScene: SKScene {
 	
 	var selectionSprite = SKSpriteNode()
 	
+	var isMuted: Bool = false
 	let swapSound = SKAction.playSoundFileNamed("Chomp.wav", waitForCompletion: false)
 	let invalidSwapSound = SKAction.playSoundFileNamed("Error.wav", waitForCompletion: false)
 	let matchSound = SKAction.playSoundFileNamed("Ka-Ching.wav", waitForCompletion: false)
 	let fallingSymbolSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
 	let addSymbolSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
+	let warningSound = SKAction.playSoundFileNamed("warning.mp3", waitForCompletion: false)
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder) is not used in this app")
@@ -172,7 +174,7 @@ class GameScene: SKScene {
 		moveB.timingMode = .EaseOut
 		spriteB.runAction(moveB)
 		
-		runAction(swapSound)
+		playSound(swapSound)
 	}
 	
 	func animateInvalidSwap(swap: Swap, completion: () -> ()) {
@@ -193,7 +195,7 @@ class GameScene: SKScene {
 		spriteA.runAction(SKAction.sequence([moveA, moveB]), completion: completion)
 		spriteB.runAction(SKAction.sequence([moveB, moveA]))
 		
-		runAction(invalidSwapSound)
+		playSound(invalidSwapSound)
 	}
 	
 	func animateMatchedSymbols(chains: Set<Chain>, completion: () -> ()) {
@@ -211,7 +213,7 @@ class GameScene: SKScene {
 				}
 			}
 		}
-		runAction(matchSound)
+		playSound(matchSound)
 		runAction(SKAction.waitForDuration(0.3), completion: completion)
 	}
 	
@@ -283,7 +285,7 @@ class GameScene: SKScene {
 					]))
 			}
 		}
-		// 7
+		
 		runAction(SKAction.waitForDuration(longestDuration), completion: completion)
 	}
 	
@@ -355,6 +357,19 @@ class GameScene: SKScene {
 	
 	func removeAllSymbolSprites() {
 		symbolsLayer.removeAllChildren()
+	}
+	
+	func noMoves()
+	{
+		playSound(warningSound)
+	}
+	
+	private func playSound(soundAction: SKAction)
+	{
+		if !isMuted
+		{
+			runAction(soundAction)
+		}
 	}
 	
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
