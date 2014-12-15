@@ -19,7 +19,7 @@ class GameViewController: UIViewController {
 	var movesLeft = 0
 	var score = 0
 	
-	var currentLevel = 31 //last level -1
+	var currentLevel = 0 //last level -1
 	let finalLevel = 32
 	
 	var tapGestureRecognizer: UITapGestureRecognizer!
@@ -70,9 +70,11 @@ class GameViewController: UIViewController {
 		highScoreLabel.hidden = true
 		playAgainButton.hidden = true
 		
-		currentLevel = 0
+		//currentLevel = 0
+		defaults.setInteger(0, forKey: "currentLevel")
 		score = 0
-		overallScore = 0
+		//overallScore = 0
+		defaults.setInteger(0, forKey: "overallScore")
 		
 		reset()
 		beginGame()
@@ -143,7 +145,6 @@ class GameViewController: UIViewController {
 		let skView = view as SKView
 		skView.multipleTouchEnabled = false
 		
-		//var prevMuteSelection: Bool? = false
 		var prevMuteSelection:Bool? = defaults.boolForKey("soundEffects")
 		if scene != nil
 		{
@@ -155,8 +156,12 @@ class GameViewController: UIViewController {
 		scene = GameScene(size: skView.bounds.size)
 		scene.scaleMode = .AspectFill
 		
-		currentLevel = defaults.integerForKey("currentLevel")
-		level = Level(filename: "Level_" + String(currentLevel))
+		//currentLevel = defaults.integerForKey("currentLevel")
+		defaults.setInteger(defaults.integerForKey("currentLevel"), forKey: "currentLevel")
+		
+		level = Level(filename: "Level_" + String(defaults.integerForKey("currentLevel")))
+		//level = Level(filename: "Level_" + String(currentLevel))
+		
 		scene.level = level
 		
 		scene.addTiles()
@@ -180,12 +185,19 @@ class GameViewController: UIViewController {
 		{
 			backgroundMusic.play()
 		}
-		
 	}
 	
 	func beginGame() {
-		currentLevel++
-		defaults.setInteger(currentLevel-1, forKey: "currentLevel")
+		//currentLevel++
+		//defaults.setInteger(currentLevel, forKey: "currentLevel")
+		defaults.setInteger(defaults.integerForKey("currentLevel")+1, forKey: "currentLevel")
+		
+		//defaults.setInteger(overallScore, forKey: "overallScore")
+		var temp = defaults.integerForKey("overallScore")
+		if defaults.integerForKey("overallScore") > 0
+		{
+			overallScore = defaults.integerForKey("overallScore")
+		}
 		reset()
 		
 		movesLeft = level.maximumMoves
@@ -212,7 +224,6 @@ class GameViewController: UIViewController {
 		{
 			defaults.setInteger(overallScore, forKey: "highScore")
 		}
-		
 		
 		overallScoreTextLabel.hidden = true
 		overallScoreLabel.hidden = true
@@ -247,7 +258,7 @@ class GameViewController: UIViewController {
 		movesLabel.text = NSString(format: "%ld", movesLeft)
 		scoreLabel.text = NSString(format: "%ld", score)
 		overallScoreLabel.text = NSString(format: "%ld", overallScore)
-		levelLabel.text = NSString(format: "%ld", currentLevel)
+		levelLabel.text = NSString(format: "%ld", defaults.integerForKey("currentLevel"))
 	}
 	
 	func decrementMoves() {
@@ -374,6 +385,8 @@ class GameViewController: UIViewController {
 		gameOverPanel.hidden = false
 		scene.userInteractionEnabled = false
 		shuffleButton.hidden = true
+		
+		defaults.setInteger(overallScore, forKey: "overallScore")
 			
 		scene.animateGameOver() {
 			self.tapGestureRecognizer = UITapGestureRecognizer(target: self, action: "hideGameOver")
@@ -389,7 +402,7 @@ class GameViewController: UIViewController {
 		scene.userInteractionEnabled = true
 		
 		//if there are no more levels, show high score, otherwise begin next level
-		if currentLevel >= finalLevel
+		if defaults.integerForKey("currentLevel") >= finalLevel
 		{
 			endGame()
 		}

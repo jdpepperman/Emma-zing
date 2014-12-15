@@ -285,8 +285,9 @@ class Level
 	//remove a number of random symbols from the board
 	func removeRandomSymbols(numberToRemove: Int) -> Set<Symbol>
 	{
+		var maxSpaces = 81
 		var symbolsToRemove: [Symbol] = []
-		while symbolsToRemove.count < numberToRemove
+		while symbolsToRemove.count < numberToRemove// &&  maxSpaces >= 0
 		{
 			var row = Int(arc4random_uniform(NumRows+0))
 			var col = Int(arc4random_uniform(NumColumns+0))
@@ -298,6 +299,10 @@ class Level
 					symbolsToRemove.append(symbols[col, row]!)
 				}
 				
+			}
+			maxSpaces--
+			if maxSpaces < 1 {
+				break
 			}
 		}
 		
