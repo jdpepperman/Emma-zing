@@ -70,7 +70,6 @@ class GameViewController: UIViewController {
 		highScoreLabel.hidden = true
 		playAgainButton.hidden = true
 		
-		//currentLevel = 0
 		defaults.setInteger(0, forKey: "currentLevel")
 		score = 0
 		overallScore = 0
@@ -157,11 +156,9 @@ class GameViewController: UIViewController {
 		scene = GameScene(size: skView.bounds.size)
 		scene.scaleMode = .AspectFill
 		
-		//currentLevel = defaults.integerForKey("currentLevel")
 		defaults.setInteger(defaults.integerForKey("currentLevel"), forKey: "currentLevel")
 		
 		level = Level(filename: "Level_" + String(defaults.integerForKey("currentLevel")))
-		//level = Level(filename: "Level_" + String(currentLevel))
 		
 		scene.level = level
 		
@@ -189,11 +186,8 @@ class GameViewController: UIViewController {
 	}
 	
 	func beginGame() {
-		//currentLevel++
-		//defaults.setInteger(currentLevel, forKey: "currentLevel")
 		defaults.setInteger(defaults.integerForKey("currentLevel")+1, forKey: "currentLevel")
 		
-		//defaults.setInteger(overallScore, forKey: "overallScore")
 		var temp = defaults.integerForKey("overallScore")
 		if defaults.integerForKey("overallScore") > 0
 		{
@@ -273,6 +267,7 @@ class GameViewController: UIViewController {
 			var scoreToLose = level.targetScore/10 * level.maximumMoves
 			overallScore -= scoreToLose
 			
+			scene.playSadMusic()
 			showGameOver()
 		}
 		else if score >= level.targetScore && movesLeft > 0
@@ -365,7 +360,7 @@ class GameViewController: UIViewController {
 		
 		
 		decrementMoves()
-		println("Moves left: \(level.getNumPossibleSwaps())")
+		//println("Moves left: \(level.getNumPossibleSwaps())")
 		
 		checkScore()
 		

@@ -130,8 +130,6 @@ class Level
 		symbols[columnB, rowB] = swap.symbolA
 		swap.symbolA.column = columnB
 		swap.symbolA.row = rowB
-		
-		//println("Possible swaps: \(possibleSwaps)")
 	}
 	
 	func tileAtColumn(column: Int, row: Int) -> Tile? {
@@ -151,7 +149,6 @@ class Level
 		do {
 			set = createInitialSymbols()
 			detectPossibleSwaps()
-			//println("possible swaps: \(possibleSwaps)")
 		}
 		while possibleSwaps.count == 0
 			
@@ -292,7 +289,7 @@ class Level
 	{
 		var maxSpaces = 81
 		var symbolsToRemove: [Symbol] = []
-		while symbolsToRemove.count < numberToRemove// &&  maxSpaces >= 0
+		while symbolsToRemove.count < numberToRemove
 		{
 			var row = Int(arc4random_uniform(NumRows+0))
 			var col = Int(arc4random_uniform(NumColumns+0))
@@ -396,7 +393,7 @@ class Level
 	private func createInitialSymbols() -> Set<Symbol> {
 		var set = Set<Symbol>()
 		
-		println(symbolsForThisLevel)
+		//println(symbolsForThisLevel)
 		
 		for row in 0..<NumRows
 		{

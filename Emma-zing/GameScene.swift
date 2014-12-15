@@ -32,6 +32,7 @@ class GameScene: SKScene {
 	let fallingSymbolSound = SKAction.playSoundFileNamed("Scrape.wav", waitForCompletion: false)
 	let addSymbolSound = SKAction.playSoundFileNamed("Drip.wav", waitForCompletion: false)
 	let warningSound = SKAction.playSoundFileNamed("warning.mp3", waitForCompletion: false)
+	let gameOverSound = SKAction.playSoundFileNamed("sadMusic.mp3", waitForCompletion: false)
 	
 	required init?(coder aDecoder: NSCoder) {
 		fatalError("init(coder) is not used in this app")
@@ -389,6 +390,11 @@ class GameScene: SKScene {
 		{
 			runAction(soundAction)
 		}
+	}
+	
+	func playSadMusic()
+	{
+		playSound(gameOverSound)
 	}
 	
 	override func touchesBegan(touches: NSSet, withEvent event: UIEvent) {
