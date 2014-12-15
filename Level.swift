@@ -16,6 +16,7 @@ class Level
 {
 	let targetScore: Int!
 	let maximumMoves: Int!
+	let numSymbols: Int!
 	
 	private var symbols = Array2D<Symbol>(columns: NumColumns, rows: NumRows)
 	private var tiles = Array2D<Tile>(columns: NumColumns, rows: NumRows)
@@ -48,6 +49,7 @@ class Level
 				}
 				targetScore = (dictionary["targetScore"] as NSNumber).integerValue
 				maximumMoves = (dictionary["moves"] as NSNumber).integerValue
+				numSymbols = (dictionary["symbols"] as NSNumber).integerValue
 			}
 		}
 		else
@@ -56,14 +58,13 @@ class Level
 		}
 		
 		//initialize symbols for this level. count should be between 3 and 14.
-		while symbolsForThisLevel.count < 6
+		while symbolsForThisLevel.count < numSymbols
 		{
 			var symbolNum = Int(arc4random_uniform(14)) + 1
 			if !(contains(symbolsForThisLevel, symbolNum))
 			{
 				symbolsForThisLevel.append(symbolNum)
 			}
-			
 		}
 	}
 	
@@ -93,18 +94,22 @@ class Level
 				}
 				targetScore = (dictionary["targetScore"] as NSNumber).integerValue
 				maximumMoves = (dictionary["moves"] as NSNumber).integerValue
+				numSymbols = (dictionary["symbols"] as NSNumber).integerValue
 			}
+		}
+		else
+		{
+			println("no more levels")
 		}
 		
 		//initialize symbols for this level. count should be between 3 and 14.
-		while symbolsForThisLevel.count < 6
+		while symbolsForThisLevel.count < numSymbols
 		{
 			var symbolNum = Int(arc4random_uniform(14)) + 1
 			if !(contains(symbolsForThisLevel, symbolNum))
 			{
 				symbolsForThisLevel.append(symbolNum)
 			}
-			
 		}
 	}
 	

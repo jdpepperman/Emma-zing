@@ -11,4 +11,5 @@
 	
 	"targetScore" : 300,
 	"moves" : 20,
+	"symbols" : 4,
 }

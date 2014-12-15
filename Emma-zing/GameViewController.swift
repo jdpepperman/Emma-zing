@@ -73,8 +73,9 @@ class GameViewController: UIViewController {
 		//currentLevel = 0
 		defaults.setInteger(0, forKey: "currentLevel")
 		score = 0
-		//overallScore = 0
+		overallScore = 0
 		defaults.setInteger(0, forKey: "overallScore")
+		updateLabels()
 		
 		reset()
 		beginGame()
