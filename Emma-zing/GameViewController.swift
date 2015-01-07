@@ -52,6 +52,11 @@ class GameViewController: UIViewController {
 	@IBOutlet weak var highScoreLabel: UILabel!
 	@IBOutlet weak var playAgainButton: UIButton!
 	@IBAction func playAgainButtonPressed(AnyObject) {
+		playAgain()
+	}
+	
+	private func playAgain()
+	{
 		overallScoreTextLabel.hidden = false
 		overallScoreLabel.hidden = false
 		targetTextLabel.hidden = false
@@ -158,6 +163,15 @@ class GameViewController: UIViewController {
 		
 		defaults.setInteger(defaults.integerForKey("currentLevel"), forKey: "currentLevel")
 		
+		var current = defaults.integerForKey("currentLevel")
+		if current > finalLevel
+		{
+			defaults.setInteger(0, forKey: "currentLevel")
+			score = 0
+			overallScore = 0
+			defaults.setInteger(0, forKey: "overallScore")
+			updateLabels()
+		}
 		level = Level(filename: "Level_" + String(defaults.integerForKey("currentLevel")))
 		
 		scene.level = level
